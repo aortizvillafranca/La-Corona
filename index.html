@@ -43,7 +43,14 @@
         import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- CONFIGURACIÓN FIREBASE (Dinámica) ---
-        const firebaseConfig = JSON.parse(__firebase_config || '{}');
+        const firebaseConfig = {
+  apiKey: "AIzaSyD6t57VV02VNvVK3sRFKhVs9wVuMEws8qs",
+  authDomain: "la-corona-511f0.firebaseapp.com",
+  projectId: "la-corona-511f0",
+  storageBucket: "la-corona-511f0.firebasestorage.app",
+  messagingSenderId: "1026886595378",
+  appId: "1:1026886595378:web:59b2a2f32ffb8267f19d2b"
+};
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-corona-app';
         
         const app = initializeApp(firebaseConfig);
