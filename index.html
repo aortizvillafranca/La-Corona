@@ -395,10 +395,60 @@
             };
 
             // --- Attendance Logic (Firebase) ---
+            // --- Attendance Logic (Firebase) ---
             const toggleAttendance = async (eventId) => {
                 if (!currentUser) return;
                 const ev = events.find(e => e.id === eventId);
                 if (!ev) return;
+
+                const isAttending = ev.attendees.includes(currentUser.id);
+                
+                // 1. Calcular nueva lista de asistentes
+                let newAttendees = isAttending 
+                    ? ev.attendees.filter(id => id !== currentUser.id)
+                    : [...ev.attendees, currentUser.id];
+                
+                // 2. Gestionar invitados (si te borras, se borran tus invitados del mapa)
+                const newGuests = { ...ev.guests };
+                if (isAttending) delete newGuests[currentUser.id];
+
+                // 3. Lógica de Puntos Automáticos (NUEVO)
+                let pointsValue = 0;
+                // Definimos cuántos puntos vale cada tipo de evento
+                if (ev.type === 'junta') pointsValue = 3;
+                else if (ev.type === 'cena') pointsValue = 1;
+                else if (ev.type === 'especial') pointsValue = 5; // Ejemplo para eventos especiales
+
+                // Si ya estaba apuntado (isAttending = true), significa que se está borrando -> Restamos
+                // Si no estaba apuntado, significa que se está apuntando -> Sumamos
+                const pointsChange = isAttending ? -pointsValue : pointsValue;
+
+                try {
+                    // A) Actualizar el Evento en la base de datos
+                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'events', eventId), {
+                        attendees: newAttendees,
+                        guests: newGuests
+                    });
+
+                    // B) Actualizar los Puntos del Hermano en la base de datos
+                    if (pointsChange !== 0) {
+                        const newTotalPoints = (currentUser.points || 0) + pointsChange;
+                        
+                        // Guardamos el nuevo total en Firebase
+                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'brothers', currentUser.id), {
+                            points: newTotalPoints
+                        });
+
+                        // Actualizamos el usuario local para que veas el cambio en tu pantalla al instante
+                        setCurrentUser(prev => ({ ...prev, points: newTotalPoints }));
+                    }
+
+                    showNotification(isAttending ? `Te has borrado (${pointsChange} puntos)` : `¡Confirmado! (+${pointsChange} puntos)`);
+                } catch (e) {
+                    console.error("Error actualizando asistencia:", e);
+                    showNotification("Error de conexión", 'error');
+                }
+            };
 
                 const isAttending = ev.attendees.includes(currentUser.id);
                 let newAttendees = isAttending 
