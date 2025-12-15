@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -44,13 +44,13 @@
 
         // --- CONFIGURACIÓN FIREBASE (Dinámica) ---
         const firebaseConfig = {
-              apiKey: "AIzaSyD6t57VV02VNvVK3sRFKhVs9wVuMEws8qs",
-              authDomain: "la-corona-511f0.firebaseapp.com",
-              projectId: "la-corona-511f0",
-              storageBucket: "la-corona-511f0.firebasestorage.app",
-              messagingSenderId: "1026886595378",
-              appId: "1:1026886595378:web:59b2a2f32ffb8267f19d2b"
-};
+          apiKey: "AIzaSyD6t57VV02VNvVK3sRFKhVs9wVuMEws8qs",
+          authDomain: "la-corona-511f0.firebaseapp.com",
+          projectId: "la-corona-511f0",
+          storageBucket: "la-corona-511f0.firebasestorage.app",
+          messagingSenderId: "1026886595378",
+          appId: "1:1026886595378:web:59b2a2f32ffb8267f19d2b"
+        };
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-corona-app';
         
         const app = initializeApp(firebaseConfig);
@@ -72,7 +72,7 @@
             X: (p) => <IconBase {...p}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></IconBase>,
             Plus: (p) => <IconBase {...p}><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></IconBase>,
             ChevronRight: (p) => <IconBase {...p}><polyline points="9 18 15 12 9 6"/></IconBase>,
-            Settings: (p) => <IconBase {...p}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></IconBase>,
+            Settings: (p) => <IconBase {...p}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/></IconBase>,
             Lock: (p) => <IconBase {...p}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></IconBase>,
             LogOut: (p) => <IconBase {...p}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></IconBase>,
             CreditCard: (p) => <IconBase {...p}><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></IconBase>,
@@ -94,42 +94,11 @@
 
         // --- SEED DATA (Solo para la primera carga) ---
         const INITIAL_BROTHERS = [
-            { id: '1', name: 'Fructuoso del Val', nickname: 'Fructu', points: 45, attendanceStreak: 12, role: 'junta' },
-            { id: '2', name: 'Jesus Chacon Almeda', nickname: 'Jesus Chacon', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '3', name: 'Pedro Alvarez', nickname: 'Pedro', points: 42, attendanceStreak: 8, role: 'hermano' },
-            { id: '4', name: 'Angel Cugat', nickname: 'Angel', points: 15, attendanceStreak: 0, role: 'hermano' },
-            { id: '5', name: 'Jorge Chacon', nickname: 'Jorge ', points: 50, attendanceStreak: 15, role: 'junta' },
-            { id: '6', name: 'Mariano Chacon', nickname: 'Mariano', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '7', name: 'Juan Antonio Chaparro', nickname: 'Chapa', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '8', name: 'Alejandro Bascon', nickname: 'Corbatas', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '9', name: 'Jose Antonio Chaparro', nickname: 'Chapa feliz', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '10', name: 'Jesus Chacon', nickname: 'Chucho', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '11', name: 'Santiago Palomo', nickname: 'Santi', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '12', name: 'Enrrique Escudero', nickname: 'Quique', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '13', name: 'Fernando Chacon', nickname: 'Fernando Chacon', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '14', name: 'Fernando Quero', nickname: 'Fernando Quero', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '15', name: 'Fernando Villafranca', nickname: 'FV', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '16', name: 'Javi Carmona', nickname: 'Carmona', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '17', name: 'Sulo', nickname: 'Sulo', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '18', name: 'Logro', nickname: 'Logro', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '19', name: 'Frernando Lopez', nickname: 'Lopez', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '20', name: 'Manuel Velasco', nickname: 'Manolo', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '21', name: 'José Ortiz', nickname: 'Chechu', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '22', name: 'Alvaro Ortiz', nickname: 'Lalo', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '23', name: 'Jesus Narbona', nickname: 'Narbona', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '24', name: 'Ignacio Ortiz', nickname: 'Nacho', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '25', name: 'Gustavo Montero', nickname: 'Gustavo', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '26', name: 'Francisco Chacon', nickname: 'Pampy', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '27', name: 'Pedro Miguel Rivas', nickname: 'Periko', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '28', name: 'KEKO', nickname: 'KEKO', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '29', name: 'Jose Antonio Quero', nickname: 'Quero', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '30', name: 'Rafa Morales', nickname: 'Morales', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '31', name: 'Raul ', nickname: 'Raul', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '32', name: 'Tete', nickname: 'Tete', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '33', name: 'Javier Villafranca', nickname: 'Popi', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '34', name: 'Ramon Torralbo', nickname: 'Tio Ramon', points: 0, attendanceStreak: 5, role: 'hermano' },
-            { id: '35', name: 'Rafael Reina', nickname: 'Rafa', points: 0, attendanceStreak: 5, role: 'hermano' },
-            
+            { id: '1', name: 'Antonio Pérez', nickname: 'El Presi', points: 45, attendanceStreak: 12, role: 'junta' },
+            { id: '2', name: 'Francisco García', nickname: 'Curro', points: 38, attendanceStreak: 5, role: 'hermano' },
+            { id: '3', name: 'José Manuel', nickname: 'El Chato', points: 42, attendanceStreak: 8, role: 'hermano' },
+            { id: '4', name: 'Manuel Rivas', nickname: 'Lolo', points: 15, attendanceStreak: 0, role: 'hermano' },
+            { id: '5', name: 'Jesús M.', nickname: 'El Niño', points: 50, attendanceStreak: 15, role: 'junta' },
         ];
         const INITIAL_EVENTS = [
             { id: 'e1', title: 'Junta de Navidad', date: '2023-12-23', time: '21:30', type: 'junta', deadline: '2023-12-21T22:00:00', attendees: ['1', '2', '3', '5'], guests: { '2': [{ name: 'Invitado 1', price: 35 }] }, menu: 'Entrantes variados, Solomillo al Whisky, Postre casero.', guestPrice: 35, closed: false },
@@ -180,6 +149,12 @@
             const [showTurnModal, setShowTurnModal] = useState(false);
             const [editingTurnId, setEditingTurnId] = useState(null);
             const [turnFormData, setTurnFormData] = useState({ date: '', concept: '', type: 'figura', brotherIds: [] });
+            
+            // Member Modal
+            const [showMemberModal, setShowMemberModal] = useState(false);
+            const [editingMemberId, setEditingMemberId] = useState(null);
+            const [memberFormData, setMemberFormData] = useState({ name: '', nickname: '', role: 'hermano', points: 0, attendanceStreak: 0 });
+
             const [guestModal, setGuestModal] = useState({ isOpen: false, eventId: null });
             const [confirmationModal, setConfirmationModal] = useState({ isOpen: false, message: '', onConfirm: () => {} });
             const [attendeeModal, setAttendeeModal] = useState({ isOpen: false, eventId: null });
@@ -255,6 +230,50 @@
             const showNotification = (msg, type = 'success') => {
                 setNotification({ msg, type });
                 setTimeout(() => setNotification(null), 3000);
+            };
+
+            // --- Member Management Logic ---
+            const openCreateMemberModal = () => {
+                setEditingMemberId(null);
+                setMemberFormData({ name: '', nickname: '', role: 'hermano', points: 0, attendanceStreak: 0 });
+                setShowMemberModal(true);
+            };
+
+            const openEditMemberModal = (member) => {
+                setEditingMemberId(member.id);
+                setMemberFormData({ ...member });
+                setShowMemberModal(true);
+            };
+
+            const saveMember = async () => {
+                if (!memberFormData.name || !memberFormData.nickname) {
+                    showNotification("Nombre y Apodo obligatorios", 'error');
+                    return;
+                }
+                try {
+                    if (editingMemberId) {
+                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'brothers', editingMemberId), memberFormData);
+                        showNotification("Hermano actualizado");
+                    } else {
+                        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'brothers'), memberFormData);
+                        showNotification("Hermano añadido");
+                    }
+                    setShowMemberModal(false);
+                } catch (e) {
+                    showNotification("Error al guardar", 'error');
+                }
+            };
+
+            const requestDeleteMember = (id) => {
+                setConfirmationModal({
+                    isOpen: true,
+                    message: "¿Eliminar a este hermano? Se borrará de la lista pero sus datos históricos pueden permanecer.",
+                    onConfirm: async () => {
+                        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'brothers', id));
+                        showNotification("Hermano eliminado");
+                        setConfirmationModal({ isOpen: false, message: '', onConfirm: () => {} });
+                    }
+                });
             };
 
             // --- Event Logic (Firebase) ---
@@ -545,6 +564,29 @@
                 );
             };
 
+            const renderMemberModal = () => {
+                if (!showMemberModal) return null;
+                return (
+                    <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in">
+                        <div className="bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl">
+                            <h3 className="text-lg font-bold text-stone-800 mb-4">{editingMemberId ? 'Editar Hermano' : 'Añadir Hermano'}</h3>
+                            <div className="space-y-3">
+                                <input type="text" placeholder="Nombre completo" className="w-full p-2 border rounded" value={memberFormData.name} onChange={e => setMemberFormData({...memberFormData, name: e.target.value})}/>
+                                <input type="text" placeholder="Apodo (ej: Curro)" className="w-full p-2 border rounded" value={memberFormData.nickname} onChange={e => setMemberFormData({...memberFormData, nickname: e.target.value})}/>
+                                <div className="grid grid-cols-2 gap-2">
+                                    <select className="w-full p-2 border rounded" value={memberFormData.role} onChange={e => setMemberFormData({...memberFormData, role: e.target.value})}><option value="hermano">Hermano</option><option value="junta">Junta</option></select>
+                                    <input type="number" placeholder="Puntos" className="w-full p-2 border rounded" value={memberFormData.points} onChange={e => setMemberFormData({...memberFormData, points: Number(e.target.value)})}/>
+                                </div>
+                            </div>
+                            <div className="flex gap-2 mt-6">
+                                <button onClick={() => setShowMemberModal(false)} className="flex-1 py-2 text-stone-500">Cancelar</button>
+                                <button onClick={saveMember} className="flex-1 py-2 bg-stone-900 text-white rounded font-bold">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
             // --- VISTAS ---
             if (!isLoggedIn) {
                 return (
@@ -775,8 +817,35 @@
                                 </div>
                             </div>
                         )}
+                        {renderMemberModal()}
                         <div className="space-y-6">
                             <section><h3 className="text-sm font-bold text-stone-400 uppercase mb-3">Acciones Rápidas</h3><div className="grid grid-cols-2 gap-3"><button onClick={openCreateEventModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-red-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.Calendar size={24} className="text-red-900"/><span className="block font-bold text-stone-800 text-sm">Nuevo Evento</span></button><button onClick={openCreateTurnModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-purple-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.User size={24} className="text-purple-900"/><span className="block font-bold text-stone-800 text-sm">Asignar Turno</span></button></div></section>
+                            
+                            <section>
+                                <div className="flex justify-between items-center mb-3">
+                                    <h3 className="text-sm font-bold text-stone-400 uppercase">Gestión de Hermanos</h3>
+                                    <button onClick={openCreateMemberModal} className="text-xs bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1 rounded-full font-bold flex items-center gap-1"><Icons.Plus size={12}/> Añadir</button>
+                                </div>
+                                <div className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                                    {brothers.length > 0 ? (
+                                        <div className="divide-y divide-stone-100">
+                                            {brothers.map(bro => (
+                                                <div key={bro.id} className="p-3 flex justify-between items-center hover:bg-stone-50">
+                                                    <div>
+                                                        <span className="block font-bold text-stone-800 text-sm">{bro.nickname}</span>
+                                                        <span className="text-xs text-stone-500">{bro.name} • {bro.role}</span>
+                                                    </div>
+                                                    <div className="flex gap-2">
+                                                        <button onClick={() => openEditMemberModal(bro)} className="p-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200"><Icons.Pencil size={14}/></button>
+                                                        <button onClick={() => requestDeleteMember(bro.id)} className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100"><Icons.Trash2 size={14}/></button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : <div className="p-4 text-center text-sm text-stone-400">No hay hermanos registrados</div>}
+                                </div>
+                            </section>
+
                             <section><h3 className="text-sm font-bold text-stone-400 uppercase mb-3">Eventos Activos</h3><div className="space-y-2">{events.length > 0 ? events.map(ev => (<div key={ev.id} className="bg-white p-3 rounded-xl border border-stone-200 flex justify-between items-center"><div><span className="block font-bold text-stone-800 text-sm">{ev.title}</span><span className="text-xs text-stone-500">{new Date(ev.date).toLocaleDateString()} • {ev.guestPrice}€ Inv.</span></div><div className="flex gap-2"><button onClick={() => openEditEventModal(ev)} className="p-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200"><Icons.Pencil size={16}/></button><button onClick={() => requestDeleteEvent(ev.id)} className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100"><Icons.Trash2 size={16}/></button></div></div>)) : <div className="text-center p-4 text-stone-400 text-sm italic">No hay eventos activos</div>}</div></section>
                             <section><h3 className="text-sm font-bold text-stone-400 uppercase mb-3">Gestión de Turnos</h3><div className="space-y-2">{turns.length > 0 ? turns.map(t => (<div key={t.id} className="bg-white p-3 rounded-xl border border-stone-200 flex justify-between items-center"><div><span className="block font-bold text-stone-800 text-sm flex items-center gap-2">{t.type === 'cocina' ? <Icons.ChefHat size={14} className="text-orange-500"/> : <Icons.Accessibility size={14} className="text-purple-500"/>}{t.concept}</span><span className="text-xs text-stone-500">{t.type === 'cocina' ? new Date(t.date).toLocaleDateString() : t.date} • {t.brotherIds.length} {t.brotherIds.length === 1 ? 'Hermano' : 'Hermanos'}</span></div><div className="flex gap-2"><button onClick={() => openEditTurnModal(t)} className="p-2 bg-stone-100 text-stone-600 rounded-lg hover:bg-stone-200"><Icons.Pencil size={16}/></button><button onClick={() => requestDeleteTurn(t.id)} className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100"><Icons.Trash2 size={16}/></button></div></div>)) : <div className="text-center p-4 text-stone-400 text-sm italic">No hay turnos asignados</div>}</div></section>
                         </div>
