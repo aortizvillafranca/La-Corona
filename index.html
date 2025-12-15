@@ -32,7 +32,7 @@
         }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 font-sans selection:bg-blue-400">
+<body class="bg-stone-50 text-stone-800 font-sans selection:bg-blue-200">
     
     <div id="root"></div>
 
@@ -116,13 +116,13 @@
 
         // --- COMPONENTES AUXILIARES ---
         const Notification = ({ message, type, onClose }) => (
-            <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-lg z-[80] animate-fade-in ${type === 'success' ? 'bg-green-700 text-white' : 'bg-Red-400 text-white'}`}>
+            <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full shadow-lg z-[80] animate-fade-in ${type === 'success' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`}>
                 <span className="font-medium">{message}</span>
             </div>
         );
 
         const NavButton = ({ icon, label, active, onClick }) => (
-            <button onClick={onClick} className={`flex flex-col items-center justify-center p-2 w-16 transition-colors ${active ? 'text-blue-400' : 'text-stone-400 hover:text-stone-600'}`}>
+            <button onClick={onClick} className={`flex flex-col items-center justify-center p-2 w-16 transition-colors ${active ? 'text-blue-500 font-bold' : 'text-stone-400 hover:text-stone-600'}`}>
                 {icon}
                 <span className={`text-[10px] font-medium mt-1 ${active ? 'font-bold' : ''}`}>{label}</span>
             </button>
@@ -611,22 +611,22 @@
                         const reserver = reservation ? brothers.find(b => b.id === reservation.brotherId) : null;
 
                         let content = null;
-                        let cellClass = "bg-white border-stone-200 hover:border-red-300 cursor-pointer";
+                        let cellClass = "bg-white border-stone-200 hover:border-blue-300 cursor-pointer";
                         let onClick = () => openReservationModal(dateStr);
 
                         if (event) {
-                            cellClass = "bg-red-50 border-red-200 cursor-not-allowed";
+                            cellClass = "bg-blue-50 border-blue-200 cursor-not-allowed";
                             content = (
-                                <div className="text-[10px] leading-tight text-red-800 font-bold mt-1 truncate">
+                                <div className="text-[10px] leading-tight text-blue-800 font-bold mt-1 truncate">
                                     {event.title}
                                 </div>
                             );
                             onClick = () => showNotification("Día reservado por la hermandad (Evento Oficial)", "error");
                         } else if (reservation) {
                             const isMine = currentUser.id === reservation.brotherId;
-                            cellClass = isMine ? "bg-blue-50 border-blue-200 cursor-pointer" : "bg-orange-50 border-orange-200 cursor-pointer";
+                            cellClass = isMine ? "bg-indigo-50 border-indigo-200 cursor-pointer" : "bg-orange-50 border-orange-200 cursor-pointer";
                             content = (
-                                <div className={`text-[10px] leading-tight font-bold mt-1 truncate ${isMine ? 'text-blue-800' : 'text-orange-800'}`}>
+                                <div className={`text-[10px] leading-tight font-bold mt-1 truncate ${isMine ? 'text-indigo-800' : 'text-orange-800'}`}>
                                     {reserver ? reserver.nickname : 'Reservado'}
                                 </div>
                             );
@@ -641,7 +641,7 @@
 
                         days.push(
                             <div key={d} onClick={onClick} className={`h-20 border rounded-lg p-1 flex flex-col items-start justify-start transition-all shadow-sm ${cellClass}`}>
-                                <span className={`text-xs font-bold ${event ? 'text-red-900' : 'text-stone-500'}`}>{d}</span>
+                                <span className={`text-xs font-bold ${event ? 'text-blue-900' : 'text-stone-500'}`}>{d}</span>
                                 {content}
                             </div>
                         );
@@ -663,9 +663,9 @@
                             {renderDays()}
                         </div>
                         <div className="flex gap-4 mt-3 text-xs justify-center">
-                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-100 border border-red-300 rounded"></div><span className="text-stone-500">Evento</span></div>
+                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-blue-100 border border-blue-300 rounded"></div><span className="text-stone-500">Evento</span></div>
                             <div className="flex items-center gap-1"><div className="w-3 h-3 bg-orange-100 border border-orange-300 rounded"></div><span className="text-stone-500">Reservado</span></div>
-                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-blue-100 border border-blue-300 rounded"></div><span className="text-stone-500">Tuyo</span></div>
+                            <div className="flex items-center gap-1"><div className="w-3 h-3 bg-indigo-100 border border-indigo-300 rounded"></div><span className="text-stone-500">Tuyo</span></div>
                         </div>
                     </div>
                 );
@@ -686,7 +686,7 @@
                             </div>
                             <div className="flex gap-2 mt-6">
                                 <button onClick={() => setShowReservationModal(false)} className="flex-1 py-2 text-stone-500 font-medium hover:bg-stone-50 rounded-lg">Cancelar</button>
-                                <button onClick={saveReservation} className="flex-1 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-lg font-bold shadow-md">Confirmar</button>
+                                <button onClick={saveReservation} className="flex-1 py-2 bg-blue-400 hover:bg-blue-500 text-white rounded-lg font-bold shadow-md">Confirmar</button>
                             </div>
                         </div>
                     </div>
@@ -700,19 +700,19 @@
                     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in">
                         <div className="bg-white rounded-xl p-6 w-full max-w-sm shadow-2xl">
                             <div className="flex justify-between items-center mb-4">
-                                <h3 className="text-lg font-bold text-stone-800 flex items-center gap-2"><Icons.UserPlus className="text-red-900" size={20}/> Añadir Invitado</h3>
+                                <h3 className="text-lg font-bold text-stone-800 flex items-center gap-2"><Icons.UserPlus className="text-blue-500" size={20}/> Añadir Invitado</h3>
                                 <button onClick={() => setGuestModal({ isOpen: false, eventId: null })} className="text-stone-400 hover:text-stone-600"><Icons.X size={20}/></button>
                             </div>
                             <div className="space-y-4">
-                                <div className="bg-stone-50 p-6 rounded-lg border border-stone-100 text-center">
+                                <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 text-center">
                                     <span className="text-xs font-bold text-stone-400 uppercase block mb-1">Precio por invitado</span>
-                                    <span className="text-4xl font-bold text-red-900">{ev?.guestPrice} €</span>
+                                    <span className="text-4xl font-bold text-blue-600">{ev?.guestPrice} €</span>
                                 </div>
                                 <p className="text-center text-sm text-stone-500">¿Quieres añadir un invitado a tu cuenta?</p>
                             </div>
                             <div className="flex gap-3 mt-6">
                                 <button onClick={() => setGuestModal({ isOpen: false, eventId: null })} className="flex-1 py-3 text-stone-500 font-medium hover:bg-stone-50 rounded-lg">Cancelar</button>
-                                <button onClick={handleAddGuest} className="flex-1 py-3 bg-red-900 hover:bg-red-800 text-white rounded-lg font-bold shadow-md">Sí, Añadir</button>
+                                <button onClick={handleAddGuest} className="flex-1 py-3 bg-blue-400 hover:bg-blue-500 text-white rounded-lg font-bold shadow-md">Sí, Añadir</button>
                             </div>
                         </div>
                     </div>
@@ -724,12 +724,12 @@
                 return (
                     <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in">
                         <div className="bg-white rounded-xl p-6 w-full max-w-xs shadow-2xl text-center">
-                            <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4"><Icons.AlertTriangle size={24}/></div>
+                            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4"><Icons.AlertTriangle size={24}/></div>
                             <h3 className="text-lg font-bold text-stone-800 mb-2">Confirmar Acción</h3>
                             <p className="text-stone-600 text-sm mb-6">{confirmationModal.message}</p>
                             <div className="flex gap-2">
                                 <button onClick={() => setConfirmationModal({ isOpen: false, message: '', onConfirm: () => {} })} className="flex-1 py-2 text-stone-500 font-bold hover:bg-stone-50 rounded">Cancelar</button>
-                                <button onClick={confirmationModal.onConfirm} className="flex-1 py-2 bg-red-600 text-white font-bold rounded shadow hover:bg-red-700">Confirmar</button>
+                                <button onClick={confirmationModal.onConfirm} className="flex-1 py-2 bg-blue-600 text-white font-bold rounded shadow hover:bg-blue-700">Confirmar</button>
                             </div>
                         </div>
                     </div>
@@ -774,7 +774,7 @@
                                             {guestSummary.map((item, idx) => (
                                                 <div key={idx} className="flex justify-between items-center p-3 bg-stone-50 rounded-lg border border-stone-100">
                                                     <span className="text-sm text-stone-600">Invitados de <span className="font-bold text-stone-800">{item.brotherName}</span></span>
-                                                    <span className="bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded-full">{item.count}</span>
+                                                    <span className="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded-full">{item.count}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -802,7 +802,7 @@
                             </div>
                             <div className="flex gap-2 mt-6">
                                 <button onClick={() => setShowMemberModal(false)} className="flex-1 py-2 text-stone-500">Cancelar</button>
-                                <button onClick={saveMember} className="flex-1 py-2 bg-stone-900 text-white rounded font-bold">Guardar</button>
+                                <button onClick={saveMember} className="flex-1 py-2 bg-blue-400 text-white rounded font-bold">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -812,11 +812,11 @@
             // --- VISTAS ---
             if (!isLoggedIn) {
                 return (
-                    <div className="min-h-screen bg-red-900 flex flex-col items-center justify-center p-6 relative overflow-hidden">
+                    <div className="min-h-screen bg-blue-400 flex flex-col items-center justify-center p-6 relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fbbf24 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
                         <div className="w-full max-w-sm bg-white rounded-2xl shadow-2xl p-8 z-10 animate-fade-in">
                             <div className="text-center mb-8">
-                                <h1 className="text-3xl font-serif font-bold text-red-900 mb-2">La Corona</h1>
+                                <h1 className="text-3xl font-serif font-bold text-blue-600 mb-2">La Corona</h1>
                                 <p className="text-stone-500 uppercase tracking-widest text-xs font-bold">Los Mitigadores de Jesús</p>
                             </div>
                             {brothers.length === 0 ? <p className="text-center text-stone-400">Cargando hermanos...</p> : (
@@ -824,10 +824,10 @@
                                     <label className="block text-sm font-medium text-stone-700 mb-1 text-center">Selecciona tu usuario</label>
                                     <div className="grid grid-cols-1 gap-3 max-h-[60vh] overflow-y-auto no-scrollbar">
                                         {brothers.map(bro => (
-                                            <button key={bro.id} onClick={() => handleLogin(bro.id)} className="flex items-center gap-3 p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:bg-red-50 transition-all text-left group">
-                                                <div className="bg-stone-100 p-2 rounded-full group-hover:bg-red-200 transition-colors"><Icons.UserCircle className="text-stone-400 group-hover:text-red-700" size={24}/></div>
+                                            <button key={bro.id} onClick={() => handleLogin(bro.id)} className="flex items-center gap-3 p-3 rounded-xl border border-stone-200 hover:border-blue-400 hover:bg-blue-50 transition-all text-left group">
+                                                <div className="bg-stone-100 p-2 rounded-full group-hover:bg-blue-200 transition-colors"><Icons.UserCircle className="text-stone-400 group-hover:text-blue-600" size={24}/></div>
                                                 <div><span className="block font-bold text-stone-800">{bro.nickname}</span><span className="text-xs text-stone-500">{bro.name}</span></div>
-                                                <Icons.ChevronRight className="ml-auto text-stone-300 group-hover:text-red-500" size={16}/>
+                                                <Icons.ChevronRight className="ml-auto text-stone-300 group-hover:text-blue-500" size={16}/>
                                             </button>
                                         ))}
                                     </div>
@@ -840,16 +840,16 @@
 
             const renderDashboardView = () => (
                 <div className="space-y-6 pb-20 animate-fade-in">
-                    <div className="relative h-48 bg-red-900 rounded-b-3xl shadow-xl overflow-hidden">
+                    <div className="relative h-48 bg-blue-400 rounded-b-3xl shadow-xl overflow-hidden">
                         {/* Botón de Cerrar Sesión (Visible para todos) */}
                         <button onClick={handleLogout} className="absolute top-4 right-4 bg-black/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-black/30 transition-colors z-20" title="Cerrar Sesión">
                             <Icons.LogOut size={20} />
                         </button>
                         
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-red-950/90 flex flex-col justify-end p-6">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-900/90 flex flex-col justify-end p-6">
                             <div className="flex justify-between items-end">
                                 <div><p className="text-yellow-500/80 text-xs font-bold uppercase tracking-wider mb-1">Bienvenido</p><h1 className="text-3xl font-serif text-white font-bold drop-shadow-md">{currentUser.nickname}</h1></div>
-                                {currentUser.role === 'junta' && <span className="bg-yellow-500 text-red-900 text-[10px] font-bold px-2 py-1 rounded uppercase">Directiva</span>}
+                                {currentUser.role === 'junta' && <span className="bg-yellow-500 text-blue-900 text-[10px] font-bold px-2 py-1 rounded uppercase">Directiva</span>}
                             </div>
                         </div>
                     </div>
@@ -857,12 +857,12 @@
                         {nextEvent ? (
                             <div className="bg-white rounded-xl shadow-lg border border-stone-200 p-5">
                                 <div className="flex justify-between items-start mb-3">
-                                    <div><span className="text-xs font-bold text-red-800 uppercase bg-red-100 px-2 py-0.5 rounded">Próximo Evento</span><h2 className="text-xl font-bold text-stone-800 mt-1">{nextEvent.title}</h2></div>
-                                    <div className="text-center bg-stone-100 p-2 rounded-lg min-w-[60px]"><span className="block text-xs text-stone-500 uppercase">DIC</span><span className="block text-xl font-bold text-red-900">{new Date(nextEvent.date).getDate()}</span></div>
+                                    <div><span className="text-xs font-bold text-blue-500 uppercase bg-blue-50 px-2 py-0.5 rounded">Próximo Evento</span><h2 className="text-xl font-bold text-stone-800 mt-1">{nextEvent.title}</h2></div>
+                                    <div className="text-center bg-stone-100 p-2 rounded-lg min-w-[60px]"><span className="block text-xs text-stone-500 uppercase">DIC</span><span className="block text-xl font-bold text-blue-600">{new Date(nextEvent.date).getDate()}</span></div>
                                 </div>
                                 <div className="flex items-center gap-2 text-stone-600 text-sm mb-4"><Icons.Utensils size={16}/><span>{nextEvent.time}h - {nextEvent.type === 'junta' ? 'Junta General' : 'Cena Ordinaria'}</span></div>
                                 <div className="flex gap-2">
-                                    <button onClick={() => toggleAttendance(nextEvent.id)} className={`flex-1 py-2.5 rounded-lg font-bold text-sm transition-all flex justify-center items-center gap-2 ${nextEvent.attendees.includes(currentUser.id) ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-red-900 text-white shadow-md hover:bg-red-800'}`}>
+                                    <button onClick={() => toggleAttendance(nextEvent.id)} className={`flex-1 py-2.5 rounded-lg font-bold text-sm transition-all flex justify-center items-center gap-2 ${nextEvent.attendees.includes(currentUser.id) ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-blue-400 text-white shadow-md hover:bg-blue-500'}`}>
                                         {nextEvent.attendees.includes(currentUser.id) ? <><Icons.Check size={18}/> Asisto</> : <>¡Me apunto!</>}
                                     </button>
                                     {nextEvent.attendees.includes(currentUser.id) && <button onClick={() => openGuestModalForEvent(nextEvent.id)} className="bg-stone-100 text-stone-700 px-4 rounded-lg font-bold border border-stone-200 hover:bg-stone-200"><Icons.UserPlus size={18}/></button>}
@@ -909,7 +909,7 @@
             const renderCalendarView = () => (
                 <div className="p-4 space-y-4 pb-24 animate-fade-in">
                     <div className="flex justify-between items-center mb-2">
-                        <h2 className="text-2xl font-serif font-bold text-red-900">Agenda</h2>
+                        <h2 className="text-2xl font-serif font-bold text-blue-600">Agenda</h2>
                         <button onClick={() => openReservationModal()} className="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-full font-bold shadow-sm flex items-center gap-1">Reservar Cuartel</button>
                     </div>
                     
@@ -951,14 +951,44 @@
                             </div>
                         );
                     })}
+
+                    {/* Reservas Particulares */}
+                    <div className="pt-6">
+                        <h3 className="text-lg font-bold text-stone-500 mb-3 flex items-center gap-2"><Icons.Home size={18} /> Reservas Particulares</h3>
+                        {reservations.length > 0 ? (
+                            <div className="space-y-3">
+                                {reservations.map(res => {
+                                    const brother = brothers.find(b => b.id === res.brotherId);
+                                    const isMine = currentUser.id === res.brotherId;
+                                    return (
+                                        <div key={res.id} className="bg-stone-50 rounded-xl p-3 border border-stone-200 flex justify-between items-center">
+                                            <div>
+                                                <div className="font-bold text-stone-800 text-sm flex items-center gap-2">
+                                                    <Icons.CalendarCheck size={14} className="text-stone-400"/>
+                                                    {new Date(res.date).toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                                                </div>
+                                                <div className="text-xs text-stone-500 mt-1">
+                                                    <span className="font-bold">{brother ? brother.nickname : 'Un hermano'}</span>
+                                                    {res.reason && <span className="italic"> - {res.reason}</span>}
+                                                </div>
+                                            </div>
+                                            {(isMine || currentUser.role === 'junta') && (
+                                                <button onClick={() => requestDeleteReservation(res.id, res.brotherId)} className="p-2 text-red-400 hover:text-red-600"><Icons.Trash2 size={16}/></button>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        ) : <p className="text-center text-xs text-stone-400 italic">No hay reservas particulares próximas.</p>}
+                    </div>
                 </div>
             );
 
             const renderRankingView = () => (
                 <div className="p-4 pb-24 animate-fade-in">
-                    <div className="text-center mb-6"><h2 className="text-2xl font-serif font-bold text-red-900">El Hermano de Oro</h2><p className="text-sm text-stone-500">Ranking de asistencia 2024</p></div>
+                    <div className="text-center mb-6"><h2 className="text-2xl font-serif font-bold text-blue-600">El Hermano de Oro</h2><p className="text-sm text-stone-500">Ranking de asistencia 2024</p></div>
                     <div className="bg-white p-4 rounded-xl shadow-sm border border-stone-100 mb-6">
-                        <div className="flex items-end justify-between h-32 gap-2 px-2">{[40, 65, 30, 80, 55, 90].map((h, i) => (<div key={i} className="w-full bg-red-100 rounded-t-md relative group"><div style={{height: `${h}%`}} className="absolute bottom-0 w-full bg-red-900 rounded-t-md transition-all duration-500"></div></div>))}</div>
+                        <div className="flex items-end justify-between h-32 gap-2 px-2">{[40, 65, 30, 80, 55, 90].map((h, i) => (<div key={i} className="w-full bg-blue-100 rounded-t-md relative group"><div style={{height: `${h}%`}} className="absolute bottom-0 w-full bg-blue-400 rounded-t-md transition-all duration-500"></div></div>))}</div>
                         <div className="flex justify-between text-xs text-stone-400 mt-2 px-2"><span>ENE</span><span>FEB</span><span>MAR</span><span>ABR</span><span>MAY</span><span>JUN</span></div>
                     </div>
                     <div className="space-y-3">
@@ -966,7 +996,7 @@
                             <div key={bro.id} className={`flex items-center gap-4 p-3 rounded-xl border ${bro.id === currentUser.id ? 'bg-yellow-50 border-yellow-200' : 'bg-white border-stone-100'}`}>
                                 <div className={`w-8 h-8 flex items-center justify-center rounded-full font-bold ${index === 0 ? 'bg-yellow-400 text-white' : index === 1 ? 'bg-stone-300 text-white' : index === 2 ? 'bg-orange-400 text-white' : 'bg-stone-100 text-stone-500'}`}>{index + 1}</div>
                                 <div className="flex-1"><div className="flex items-center gap-2"><span className="font-bold text-stone-800">{bro.nickname}</span></div><div className="w-full bg-stone-100 h-1.5 rounded-full mt-1 overflow-hidden"><div className="bg-purple-600 h-full rounded-full" style={{ width: `${Math.min(bro.points, 100)}%`}}></div></div></div>
-                                <div className="text-right"><span className="block text-lg font-bold text-red-900">{bro.points}</span><span className="text-[10px] text-stone-400 uppercase">Puntos</span></div>
+                                <div className="text-right"><span className="block text-lg font-bold text-blue-600">{bro.points}</span><span className="text-[10px] text-stone-400 uppercase">Puntos</span></div>
                             </div>
                         ))}
                     </div>
@@ -975,13 +1005,13 @@
 
             const renderTurnosView = () => (
                 <div className="p-4 pb-24 animate-fade-in">
-                    <h2 className="text-2xl font-serif font-bold text-red-900 mb-6">Turnos y Figuras</h2>
+                    <h2 className="text-2xl font-serif font-bold text-blue-600 mb-6">Turnos y Figuras</h2>
                     <div className="mb-8">
-                        <h3 className="font-bold text-lg text-stone-700 mb-3 flex items-center gap-2"><Icons.Accessibility size={20} className="text-red-900"/> Figuras</h3>
+                        <h3 className="font-bold text-lg text-stone-700 mb-3 flex items-center gap-2"><Icons.Accessibility size={20} className="text-blue-600"/> Figuras</h3>
                         <div className="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
-                            <table className="w-full text-sm text-left"><thead className="bg-red-50 text-red-900"><tr><th className="p-3">Día</th><th className="p-3">Figura</th><th className="p-3">Hermano</th></tr></thead>
+                            <table className="w-full text-sm text-left"><thead className="bg-blue-50 text-blue-700"><tr><th className="p-3">Día</th><th className="p-3">Figura</th><th className="p-3">Hermano</th></tr></thead>
                                 <tbody className="divide-y divide-stone-100">
-                                    {turns.filter(t => t.type === 'figura').map(turn => (<tr key={turn.id}><td className="p-3 font-bold text-red-900">{turn.date}</td><td className="p-3 font-medium text-stone-800">{turn.concept}</td><td className="p-3 text-stone-600">{brothers.find(b => b.id === turn.brotherIds[0])?.nickname}</td></tr>))}
+                                    {turns.filter(t => t.type === 'figura').map(turn => (<tr key={turn.id}><td className="p-3 font-bold text-blue-600">{turn.date}</td><td className="p-3 font-medium text-stone-800">{turn.concept}</td><td className="p-3 text-stone-600">{brothers.find(b => b.id === turn.brotherIds[0])?.nickname}</td></tr>))}
                                 </tbody>
                             </table>
                             {turns.filter(t => t.type === 'figura').length === 0 && <p className="p-4 text-center text-xs text-stone-400">No hay turnos asignados</p>}
@@ -1010,15 +1040,15 @@
                             <div className="bg-stone-100 p-4 rounded-full mb-4"><Icons.Lock className="text-stone-400" size={32}/></div>
                             <h2 className="text-xl font-bold text-stone-800 mb-2">Zona Junta Directiva</h2>
                             <p className="text-sm text-stone-500 mb-6 text-center">Introduce el PIN maestro para gestionar el cuartel.</p>
-                            <input type="password" maxLength={4} value={adminPin} onChange={(e) => setAdminPin(e.target.value)} className="text-center text-3xl tracking-[1em] w-48 font-bold border-b-2 border-stone-300 focus:border-red-900 focus:outline-none mb-6 bg-transparent" placeholder="••••"/>
-                            <button onClick={() => { if (adminPin === '1660') { setIsAdminAuth(true); showNotification("Acceso concedido", 'success'); } else { showNotification("PIN incorrecto", 'error'); setAdminPin(''); } }} className="bg-stone-900 text-white px-8 py-3 rounded-lg font-bold w-full max-w-xs">Entrar</button>
+                            <input type="password" maxLength={4} value={adminPin} onChange={(e) => setAdminPin(e.target.value)} className="text-center text-3xl tracking-[1em] w-48 font-bold border-b-2 border-stone-300 focus:border-blue-400 focus:outline-none mb-6 bg-transparent" placeholder="••••"/>
+                            <button onClick={() => { if (adminPin === '1660') { setIsAdminAuth(true); showNotification("Acceso concedido", 'success'); } else { showNotification("PIN incorrecto", 'error'); setAdminPin(''); } }} className="bg-blue-400 hover:bg-blue-500 text-white px-8 py-3 rounded-lg font-bold w-full max-w-xs">Entrar</button>
                             <button onClick={handleLogout} className="mt-12 text-stone-400 text-sm flex items-center gap-2 border border-stone-200 px-4 py-2 rounded-full"><Icons.LogOut size={16}/> Cerrar Sesión</button>
                         </div>
                     );
                 }
                 return (
                     <div className="p-4 pb-24 animate-fade-in">
-                        <div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-serif font-bold text-red-900">Administración</h2><button onClick={() => setIsAdminAuth(false)} className="text-stone-500 p-2"><Icons.LogOut size={20}/></button></div>
+                        <div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-serif font-bold text-blue-600">Administración</h2><button onClick={() => setIsAdminAuth(false)} className="text-stone-500 p-2"><Icons.LogOut size={20}/></button></div>
                         {showEventModal && (
                             <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
                                 <div className="bg-white rounded-xl p-6 w-full max-w-sm">
@@ -1031,7 +1061,7 @@
                                             <div className="relative"><input type="number" placeholder="Precio Inv." className="w-full p-2 border rounded pl-6" value={eventFormData.guestPrice} onChange={e => setEventFormData({...eventFormData, guestPrice: e.target.value})}/><span className="absolute left-2 top-2 text-stone-400">€</span></div>
                                         </div>
                                     </div>
-                                    <div className="flex gap-2 mt-6"><button onClick={() => setShowEventModal(false)} className="flex-1 py-2 text-stone-500">Cancelar</button><button onClick={saveEvent} className="flex-1 py-2 bg-red-900 text-white rounded font-bold">{editingEventId ? 'Guardar' : 'Crear'}</button></div>
+                                    <div className="flex gap-2 mt-6"><button onClick={() => setShowEventModal(false)} className="flex-1 py-2 text-stone-500">Cancelar</button><button onClick={saveEvent} className="flex-1 py-2 bg-blue-400 text-white rounded font-bold">{editingEventId ? 'Guardar' : 'Crear'}</button></div>
                                 </div>
                             </div>
                         )}
@@ -1067,7 +1097,7 @@
                         )}
                         {renderMemberModal()}
                         <div className="space-y-6">
-                            <section><h3 className="text-sm font-bold text-stone-400 uppercase mb-3">Acciones Rápidas</h3><div className="grid grid-cols-2 gap-3"><button onClick={openCreateEventModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-red-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.Calendar size={24} className="text-red-900"/><span className="block font-bold text-stone-800 text-sm">Nuevo Evento</span></button><button onClick={openCreateTurnModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-purple-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.User size={24} className="text-purple-900"/><span className="block font-bold text-stone-800 text-sm">Asignar Turno</span></button></div></section>
+                            <section><h3 className="text-sm font-bold text-stone-400 uppercase mb-3">Acciones Rápidas</h3><div className="grid grid-cols-2 gap-3"><button onClick={openCreateEventModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-blue-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.Calendar size={24} className="text-blue-500"/><span className="block font-bold text-stone-800 text-sm">Nuevo Evento</span></button><button onClick={openCreateTurnModal} className="p-4 bg-white border border-stone-200 rounded-xl text-left hover:border-purple-300 flex flex-col items-center justify-center gap-2 shadow-sm"><Icons.User size={24} className="text-purple-900"/><span className="block font-bold text-stone-800 text-sm">Asignar Turno</span></button></div></section>
                             
                             <section>
                                 <div className="flex justify-between items-center mb-3">
@@ -1118,7 +1148,7 @@
                     <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-stone-200 px-2 pb-6 pt-2 z-40 flex justify-around items-end">
                         <NavButton icon={<Icons.Settings size={20}/>} label="Inicio" active={view === 'dashboard'} onClick={() => setView('dashboard')}/>
                         <NavButton icon={<Icons.Calendar size={20}/>} label="Agenda" active={view === 'calendar'} onClick={() => setView('calendar')}/>
-                        <div className="relative -top-5"><button onClick={() => setView('ranking')} className="bg-red-900 text-yellow-500 p-4 rounded-full shadow-lg hover:scale-105 transition-transform border-4 border-white"><Icons.Trophy size={24}/></button></div>
+                        <div className="relative -top-5"><button onClick={() => setView('ranking')} className="bg-blue-400 text-white p-4 rounded-full shadow-lg hover:scale-105 transition-transform border-4 border-white"><Icons.Trophy size={24}/></button></div>
                         <NavButton icon={<Icons.User size={20}/>} label="Turnos" active={view === 'turnos'} onClick={() => setView('turnos')}/>
                         {currentUser?.role === 'junta' && (
                             <NavButton icon={<Icons.BookOpen size={20}/>} label="Perfil" active={view === 'profile'} onClick={() => setView('profile')}/>
