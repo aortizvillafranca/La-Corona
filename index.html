@@ -43,14 +43,7 @@
         import { getFirestore, collection, doc, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // --- CONFIGURACIÓN FIREBASE (Dinámica) ---
-        const firebaseConfig = {
-  apiKey: "AIzaSyD6t57VV02VNvVK3sRFKhVs9wVuMEws8qs",
-  authDomain: "la-corona-511f0.firebaseapp.com",
-  projectId: "la-corona-511f0",
-  storageBucket: "la-corona-511f0.firebasestorage.app",
-  messagingSenderId: "1026886595378",
-  appId: "1:1026886595378:web:59b2a2f32ffb8267f19d2b"
-};
+        const firebaseConfig = JSON.parse(__firebase_config || '{}');
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-corona-app';
         
         const app = initializeApp(firebaseConfig);
@@ -395,7 +388,6 @@
             };
 
             // --- Attendance Logic (Firebase) ---
-            // --- Attendance Logic (Firebase) ---
             const toggleAttendance = async (eventId) => {
                 if (!currentUser) return;
                 const ev = events.find(e => e.id === eventId);
@@ -417,7 +409,7 @@
                 // Definimos cuántos puntos vale cada tipo de evento
                 if (ev.type === 'junta') pointsValue = 3;
                 else if (ev.type === 'cena') pointsValue = 1;
-                else if (ev.type === 'especial') pointsValue = 5; // Ejemplo para eventos especiales
+                else if (ev.type === 'especial') pointsValue = 5;
 
                 // Si ya estaba apuntado (isAttending = true), significa que se está borrando -> Restamos
                 // Si no estaba apuntado, significa que se está apuntando -> Sumamos
@@ -443,29 +435,9 @@
                         setCurrentUser(prev => ({ ...prev, points: newTotalPoints }));
                     }
 
-                    showNotification(isAttending ? `Te has borrado (${pointsChange} puntos)` : `¡Confirmado! (+${pointsChange} puntos)`);
+                    showNotification(isAttending ? `Te has borrado (${-pointsChange} puntos)` : `¡Confirmado! (+${pointsChange} puntos)`);
                 } catch (e) {
                     console.error("Error actualizando asistencia:", e);
-                    showNotification("Error de conexión", 'error');
-                }
-            };
-
-                const isAttending = ev.attendees.includes(currentUser.id);
-                let newAttendees = isAttending 
-                    ? ev.attendees.filter(id => id !== currentUser.id)
-                    : [...ev.attendees, currentUser.id];
-                
-                // Update map for guests: if leaving, remove guests
-                const newGuests = { ...ev.guests };
-                if (isAttending) delete newGuests[currentUser.id];
-
-                try {
-                    await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'events', eventId), {
-                        attendees: newAttendees,
-                        guests: newGuests
-                    });
-                    showNotification(isAttending ? "Te has borrado" : "¡Confirmado!");
-                } catch (e) {
                     showNotification("Error de conexión", 'error');
                 }
             };
