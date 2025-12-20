@@ -51,6 +51,7 @@
   messagingSenderId: "1026886595378",
   appId: "1:1026886595378:web:59b2a2f32ffb8267f19d2b"
 };
+
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'la-corona-app';
         
         const app = initializeApp(firebaseConfig);
@@ -141,8 +142,10 @@
             const [reservations, setReservations] = useState([]);
             
             // UI State
+            // Initialize view from localStorage if available, else dashboard
+            const [view, setView] = useState(() => localStorage.getItem('appView') || 'dashboard');
             const [isLoggedIn, setIsLoggedIn] = useState(false);
-            const [view, setView] = useState('dashboard');
+
             const [notification, setNotification] = useState(null);
             const [isAdminAuth, setIsAdminAuth] = useState(false);
             const [adminPin, setAdminPin] = useState('');
@@ -168,6 +171,11 @@
             const [guestModal, setGuestModal] = useState({ isOpen: false, eventId: null });
             const [confirmationModal, setConfirmationModal] = useState({ isOpen: false, message: '', onConfirm: () => {} });
             const [attendeeModal, setAttendeeModal] = useState({ isOpen: false, eventId: null });
+
+            // Persist View
+            useEffect(() => {
+                localStorage.setItem('appView', view);
+            }, [view]);
 
             // 1. Initialize Auth
             useEffect(() => {
@@ -237,13 +245,26 @@
                 };
             }, [user]);
 
+            // Auto-login effect
+            useEffect(() => {
+                const savedId = localStorage.getItem('savedBrotherId');
+                if (savedId && brothers.length > 0 && !isLoggedIn) {
+                    const foundUser = brothers.find(b => b.id === savedId);
+                    if (foundUser) {
+                        setCurrentUser(foundUser);
+                        setIsLoggedIn(true);
+                    }
+                }
+            }, [brothers, isLoggedIn]);
+
             // Actions (Updated to Firebase)
             const handleLogin = (brotherId) => {
                 const foundUser = brothers.find(b => b.id === brotherId);
                 if (foundUser) {
                     setCurrentUser(foundUser);
                     setIsLoggedIn(true);
-                    setView('dashboard');
+                    localStorage.setItem('savedBrotherId', brotherId);
+                    // View is already handled by state initializer
                 }
             };
 
@@ -252,7 +273,9 @@
                 setCurrentUser(null);
                 setIsAdminAuth(false);
                 setAdminPin('');
+                localStorage.removeItem('savedBrotherId');
                 setView('dashboard');
+                localStorage.removeItem('appView');
             };
 
             const showNotification = (msg, type = 'success') => {
