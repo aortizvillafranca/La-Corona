@@ -97,22 +97,9 @@
         };
 
         // --- SEED DATA (Solo para la primera carga) ---
-        const INITIAL_BROTHERS = [
-            { id: '1', name: 'Antonio Pérez', nickname: 'El Presi', points: 45, attendanceStreak: 12, role: 'junta' },
-            { id: '2', name: 'Francisco García', nickname: 'Curro', points: 38, attendanceStreak: 5, role: 'hermano' },
-            { id: '3', name: 'José Manuel', nickname: 'El Chato', points: 42, attendanceStreak: 8, role: 'hermano' },
-            { id: '4', name: 'Manuel Rivas', nickname: 'Lolo', points: 15, attendanceStreak: 0, role: 'hermano' },
-            { id: '5', name: 'Jesús M.', nickname: 'El Niño', points: 50, attendanceStreak: 15, role: 'junta' },
-        ];
-        const INITIAL_EVENTS = [
-            { id: 'e1', title: 'Junta de Navidad', date: '2023-12-23', time: '21:30', type: 'junta', deadline: '2023-12-21T22:00:00', attendees: ['1', '2', '3', '5'], guests: { '2': [{ name: 'Invitado 1', price: 35 }] }, menu: 'Entrantes variados, Solomillo al Whisky, Postre casero.', guestPrice: 35, closed: false },
-            { id: 'e2', title: 'Sábado de Romanos', date: '2024-03-23', time: '14:00', type: 'especial', deadline: '2024-03-20T22:00:00', attendees: ['1', '5'], guests: {}, guestPrice: 40, closed: false },
-        ];
-        const INITIAL_TURNS = [
-            { id: 't1', date: 'Viernes Noche', concept: 'El Cirineo', type: 'figura', brotherIds: ['2'] },
-            { id: 't2', date: 'Viernes Noche', concept: 'Judas', type: 'figura', brotherIds: ['5'] },
-            { id: 't3', date: '2023-12-23', concept: 'Junta Navidad', type: 'cocina', brotherIds: ['3', '1', '4'] },
-        ];
+        const INITIAL_BROTHERS = [];
+        const INITIAL_EVENTS = [];
+        const INITIAL_TURNS = [];
         const INITIAL_RESERVATIONS = [];
 
         // --- COMPONENTES AUXILIARES ---
